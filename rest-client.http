@@ -10,7 +10,7 @@
 GET {{_apiurl}}/posts HTTP/1.1
 
 ###***** GET BY ID *****###
-GET {{_apiurl}}/posts/6125bc63ca3d17ae4042dbd6 HTTP/1.1
+GET {{_apiurl}}/posts/612612681f804ec8bf9c38ae HTTP/1.1
 
 ###***** POST *****###
 POST {{_apiurl}}/posts
@@ -36,31 +36,31 @@ Content-Type: image/png
 --WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###***** PUT *****###
-PUT {{_apiurl}}/posts/6125d9509ad26ced1baaad33 HTTP/1.1
+PUT {{_apiurl}}/posts/612612681f804ec8bf9c38ae HTTP/1.1
 Content-Type: multipart/form-data; boundary="WebKitFormBoundary7MA4YWxkTrZu0gW"
 
 --WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="title"
 
-title01 update
+title01
 --WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="category"
 
-category01 update
+category01
 --WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="content"
 
-content01 update
+content01
 --WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="old_filename"
 
-image-1629870416658-dummy_img01.png
+image_1629885056855_dummy_img02.png
 --WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="image"; filename="dummy_img02.png"
+Content-Disposition: form-data; name="image"; filename="dummy_img01.png"
 Content-Type: image/png
 
-< ./uploads/dummy_img02.png
+< ./uploads/dummy_img01.png
 --WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###***** DELETE *****###
-DELETE {{_apiurl}}/posts/61260b7109ee7f2cf5d05a6d HTTP/1.1
+DELETE {{_apiurl}}/posts/612612681f804ec8bf9c38ae HTTP/1.1
