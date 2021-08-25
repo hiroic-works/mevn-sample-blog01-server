@@ -1,5 +1,19 @@
 const router = require('express').Router();
+const multer = require('multer');
 const Post = require('../models/post.model');
+
+// ファイルアップロード設定
+let storage = multer.diskStorage({
+	// ファイル保存先
+	destination: (req, file, cb) => {
+		cb(null, './uploads');
+	},
+	filename: (req, file, cb) => {
+		cb(null, `${file.fieldname}_${Date.now()}_${file.originalname}`);
+	},
+});
+// 初期化。
+const upload = multer({ storage });
 
 // fetch all posts
 router.get('/', async (req, res) => {
@@ -23,8 +37,22 @@ router.get('/:id', async (req, res) => {
 });
 
 // create post
-router.post('/', (req, res) => {
-	res.send('Hello create');
+router.post('/', upload.single('image'), async (req, res) => {
+	if (!req.file) {
+		return res.status(400).json({ message: 'file upload not found' });
+	}
+	try {
+		const post = new Post({
+			title: req.body.title,
+			category: req.body.category,
+			content: req.body.content,
+			image: req.file.filename,
+		});
+		await post.save();
+		res.status(201).json({ message: 'post created.' });
+	} catch (err) {
+		res.status(400).json({ message: err.message });
+	}
 });
 
 // update post
