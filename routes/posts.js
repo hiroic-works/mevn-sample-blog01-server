@@ -11,9 +11,15 @@ router.get('/', async (req, res) => {
 	}
 });
 
-// fetch single posts
-router.get('/:id', (req, res) => {
-	res.send('Hello get single');
+// fetch single post
+router.get('/:id', async (req, res) => {
+	let id = req.params.id;
+	try {
+		const post = await Post.findById(id);
+		res.status(200).json(post);
+	} catch (err) {
+		res.status(400).json({ message: err.message });
+	}
 });
 
 // create post

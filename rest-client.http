@@ -10,7 +10,7 @@
 GET {{_apiurl}}/posts HTTP/1.1
 
 ###***** GET BY ID *****###
-GET {{_apiurl}}/posts/1 HTTP/1.1
+GET {{_apiurl}}/posts/6125bc63ca3d17ae4042dbd6 HTTP/1.1
 
 ###***** POST *****###
 // use POSTMAN http://localhost:5000/api/posts
