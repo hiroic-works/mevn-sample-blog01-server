@@ -67,7 +67,7 @@ router.put('/:id', upload.single('image'), async (req, res) => {
 		try {
 			fs.unlinkSync(`./uploads/${req.body.old_filename}`);
 		} catch (err) {
-			return res.status(400).json({ message: 'directory not deleted.' });
+			console.log('fs.unlinkSync error', err);
 		}
 	}
 	try {
@@ -84,8 +84,21 @@ router.put('/:id', upload.single('image'), async (req, res) => {
 });
 
 // delete posts
-router.delete('/:id', (req, res) => {
-	res.send('Hello delete');
+router.delete('/:id', async (req, res) => {
+	let id = req.params.id;
+	try {
+		const post = await Post.findByIdAndDelete(id);
+		if (post.image) {
+			try {
+				fs.unlinkSync(`./uploads/${post.image}`);
+			} catch (err) {
+				console.log('fs.unlinkSync error', err);
+			}
+		}
+		res.status(200).json({ message: 'post deleted.' });
+	} catch (err) {
+		res.status(400).json({ message: err.message });
+	}
 });
 
 module.exports = router;
