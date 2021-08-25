@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const multer = require('multer');
+const fs = require('fs');
 const Post = require('../models/post.model');
 
 // ファイルアップロード設定
@@ -56,8 +57,30 @@ router.post('/', upload.single('image'), async (req, res) => {
 });
 
 // update post
-router.put('/:id', (req, res) => {
-	res.send('Hello update');
+router.put('/:id', upload.single('image'), async (req, res) => {
+	let id = req.params.id;
+	let updateFilename = '';
+	if (!req.file) {
+		updateFilename = req.body.old_filename;
+	} else {
+		updateFilename = req.file.filename;
+		try {
+			fs.unlinkSync(`./uploads/${req.body.old_filename}`);
+		} catch (err) {
+			return res.status(400).json({ message: 'directory not deleted.' });
+		}
+	}
+	try {
+		await Post.findByIdAndUpdate(id, {
+			title: req.body.title,
+			category: req.body.category,
+			content: req.body.content,
+			image: updateFilename,
+		});
+		res.status(200).json({ message: 'post updated.' });
+	} catch (err) {
+		res.status(400).json({ message: err.message });
+	}
 });
 
 // delete posts

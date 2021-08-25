@@ -36,7 +36,31 @@ Content-Type: image/png
 --WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###***** PUT *****###
-PUT {{_apiurl}}/posts/1 HTTP/1.1
+PUT {{_apiurl}}/posts/6125d9509ad26ced1baaad33 HTTP/1.1
+Content-Type: multipart/form-data; boundary="WebKitFormBoundary7MA4YWxkTrZu0gW"
+
+--WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="title"
+
+title01 update
+--WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="category"
+
+category01 update
+--WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="content"
+
+content01 update
+--WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="old_filename"
+
+image-1629870416658-dummy_img01.png
+--WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="dummy_img02.png"
+Content-Type: image/png
+
+< ./uploads/dummy_img02.png
+--WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###***** DELETE *****###
 DELETE {{_apiurl}}/posts/1 HTTP/1.1
