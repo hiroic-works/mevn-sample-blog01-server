@@ -1,8 +1,14 @@
 const router = require('express').Router();
+const Post = require('../models/post.model');
 
 // fetch all posts
-router.get('/', (req, res) => {
-	res.send('Hello get all');
+router.get('/', async (req, res) => {
+	try {
+		const posts = await Post.find();
+		res.status(200).json(posts);
+	} catch (err) {
+		res.status(400).json({ message: err.message });
+	}
 });
 
 // fetch single posts
