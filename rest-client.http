@@ -1,0 +1,24 @@
+// 事前に「REST Client」のvscode拡張機能入れとく
+
+//*************** setting ***************//
+
+@_apiurl = http://localhost:5000/api
+
+//*************** setting ***************//
+
+###***** GET *****###
+GET {{_apiurl}}/posts HTTP/1.1
+
+###***** GET BY ID *****###
+GET {{_apiurl}}/posts/1 HTTP/1.1
+
+###***** POST *****###
+// use POSTMAN http://localhost:5000/api/posts
+// Content-Type: multipart/form-data
+POST {{_apiurl}}/posts/ HTTP/1.1
+
+###***** PUT *****###
+PUT {{_apiurl}}/posts/1 HTTP/1.1
+
+###***** DELETE *****###
+DELETE {{_apiurl}}/posts/1 HTTP/1.1
